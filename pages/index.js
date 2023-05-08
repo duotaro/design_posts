@@ -76,12 +76,12 @@ export default function Home({ posts }) {
             {/* <Search /> */}
             {/* Categories widget*/}
             <div className="card mb-4">
-              <div className="card-header  bg-dark text-white">AI Categories</div>
+              <div className="card-header  bg-dark text-white">Design Categories</div>
               <div className="card-body">
                 <div className="flex-column justify-content-center small text-warning mb-2">
                   {tagList.map((tag) => {
                     return (
-                      <Link href={`/${tag.name}/`} className="bi-star-fill btn btn-outline-secondary m-1" style={{whiteSpace: 'nowrap'}} key={tag.id}>{tag.name}</Link>
+                      <Link href={`/${tag}/`} className="bi-star-fill btn btn-outline-secondary m-1" style={{whiteSpace: 'nowrap'}} key={tag}>{tag}</Link>
                     )
                   })}
                 </div>
