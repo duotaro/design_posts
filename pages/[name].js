@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Text } from "./blog/detail/[id].js"
 import { getDatabase } from "../lib/notion.js";
 import Layout from '../components/layout.js'
+import Search from '../components/side_widget/search.js'
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
 
@@ -58,15 +59,7 @@ export default function Tags({ posts, tagList }) {
           {/* Side widgets*/}
           <section className="col-lg-4">
             {/* Search widget*/}
-            <div className="card mb-4">
-                <div className="card-header bg-dark text-white">Search</div>
-                <div className="card-body">
-                    <div className="input-group">
-                        <input className="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button className="btn btn-primary" id="button-search" type="button">Go!</button>
-                    </div>
-                </div>
-            </div>
+            {/* <Search /> */}
             {/* Categories widget*/}
             <div className="card mb-4">
               <div className="card-header  bg-dark text-white">Categories</div>
@@ -74,17 +67,17 @@ export default function Tags({ posts, tagList }) {
                 <div className="flex-column justify-content-center small text-warning mb-2">
                   {tagList.map((tag) => {
                     return (
-                      <Link href={`/blog/?tag=${tag}`} className="col bi-star-fill btn btn-outline-secondary m-1" key={tag}>{tag}</Link>
+                      <Link href={`/${tag}/`} className="bi-star-fill btn btn-outline-secondary m-1"  key={tag}>{tag}</Link>
                     )
                   })}
                 </div>
               </div>
             </div>
             {/* Side widget*/}
-            <div className="card mb-4">
+            {/* <div className="card mb-4">
                 <div className="card-header  bg-dark text-white">Side Widget</div>
                 <div className="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-            </div>
+            </div> */}
           </section>
         </div>{/* .row */}
       </div>{/* .container */}
@@ -109,7 +102,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: tagList.map((tag) => ({ params: { name:  tag } })),
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -150,6 +143,6 @@ export const getStaticProps = async (context) => {
       posts: posts,
       tagList: tagList
     },
-    revalidate: 1,
+    revalidate: 1
   };
 };

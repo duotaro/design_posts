@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Text } from "./blog/detail/[id].js"
 import { getDatabase } from "../lib/notion";
 import Layout from '../components/layout'
+import Search from '../components/side_widget/search.js'
 export const databaseId = process.env.NEXT_PUBLIC_NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
@@ -31,7 +32,7 @@ export default function Home({ posts }) {
       <div className="container mt-5">
         <div className="row">
           <section className="col-lg-8">
-            <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
+          <div className="row gx-4 gx-lg-5 row-cols-sm-2 row-cols-1 justify-content-center">
               {posts.map((post) => {
                 const date = new Date(post.last_edited_time).toLocaleString(
                   "ja",
@@ -42,7 +43,7 @@ export default function Home({ posts }) {
                   }
                 );
                 return (
-                    <div className="col-6 mb-5" key={post.id}>
+                    <div className="col mb-5" key={post.id}>
                         <div className="card h-100">
                             <img className="card-img-top border-bottom img-responsive" src={post.properties.Image.url} alt="..." />
                             <div className="card-body p-4">
@@ -72,15 +73,7 @@ export default function Home({ posts }) {
           {/* Side widgets*/}
           <section className="col-lg-4">
             {/* Search widget*/}
-            <div className="card mb-4">
-                <div className="card-header bg-dark text-white">Search</div>
-                <div className="card-body">
-                    <div className="input-group">
-                        <input className="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button className="btn btn-primary" id="button-search" type="button" >Go!</button>
-                    </div>
-                </div>
-            </div>
+            {/* <Search /> */}
             {/* Categories widget*/}
             <div className="card mb-4">
               <div className="card-header  bg-dark text-white">AI Categories</div>
@@ -88,17 +81,17 @@ export default function Home({ posts }) {
                 <div className="flex-column justify-content-center small text-warning mb-2">
                   {tagList.map((tag) => {
                     return (
-                      <Link href={`/blog/?tag=${tag}`} className="col bi-star-fill btn btn-outline-secondary m-1" key={tag}>{tag}</Link>
+                      <Link href={`/${tag.name}/`} className="bi-star-fill btn btn-outline-secondary m-1" style={{whiteSpace: 'nowrap'}} key={tag.id}>{tag.name}</Link>
                     )
                   })}
                 </div>
               </div>
             </div>
             {/* Side widget*/}
-            <div className="card mb-4">
+            {/* <div className="card mb-4">
                 <div className="card-header  bg-dark text-white">Side Widget</div>
                 <div className="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-            </div>
+            </div> */}
           </section>
         </div>{/* .row */}
       </div>{/* .container */}
