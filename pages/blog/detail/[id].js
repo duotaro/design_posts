@@ -309,7 +309,7 @@ export default function Post({ page, blocks, tagList }) {
                 {/* Side widgets*/}
                 <div className="col-lg-4">
                     {/* Search widget*/}
-                    <div className="card mb-4">
+                    {/* <div className="card mb-4">
                         <div className="card-header bg-dark text-white">Search</div>
                         <div className="card-body">
                             <div className="input-group">
@@ -317,7 +317,7 @@ export default function Post({ page, blocks, tagList }) {
                                 <button className="btn btn-primary" id="button-search" type="button">Go!</button>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     {/* Categories widget*/}
                     <div className="card mb-4">
                         <div className="card-header  bg-dark text-white">Categories</div>
@@ -327,7 +327,7 @@ export default function Post({ page, blocks, tagList }) {
                                     <div className="row">
                                       {tagList.map((tag) => {
                                         return (
-                                          <div className="col-3" style={{width:'fit-content'}}><Link href={`/blog/?tag=${tag}`} className="col bi-star-fill btn btn-outline-secondary m-1"  key={tag}>{tag}</Link></div>
+                                          <div className="col-3" style={{width:'fit-content'}}><Link href={`/${tag}/`} className="col bi-star-fill btn btn-outline-secondary m-1"  key={tag}>{tag}</Link></div>
                                         )
                                       })}
                                     </div>
@@ -336,10 +336,10 @@ export default function Post({ page, blocks, tagList }) {
                         </div>
                     </div>
                     {/* Side widget*/}
-                    <div className="card mb-4">
+                    {/* <div className="card mb-4">
                         <div className="card-header  bg-dark text-white">Side Widget</div>
                         <div className="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

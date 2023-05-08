@@ -12,7 +12,7 @@ export default function Tags({ posts, tagList }) {
   return (
     <Layout>
       <Head>
-        <title>Techvenience - トップ -</title>
+        <title>Techvenience - デザイン -</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mt-5">
