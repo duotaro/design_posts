@@ -102,7 +102,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths: tagList.map((tag) => ({ params: { name:  tag } })),
-    fallback: true,
+    fallback: false,
   };
 };
 
@@ -110,6 +110,11 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const { name } = context.params;
   const database = await getDatabase(databaseId);
+
+  console.log("--------------")
+  console.log(database)
+  console.log("--------------")
+
   let tagList = []
   
   for(const item of database) {
