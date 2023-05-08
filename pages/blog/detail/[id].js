@@ -15,6 +15,10 @@ export const Text = ({ text }) => {
       annotations: { bold, code, color, italic, strikethrough, underline },
       text,
     } = value;
+    if (!text) {
+      return null;
+    }
+    
     return (
       <span
         className={[
@@ -50,8 +54,14 @@ const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
 
+
   switch (type) {
     case "paragraph":
+      if(!value.rich_text || value.rich_text.length == 0){
+        return (
+          <p></p>
+        )
+      };
       return (
         <p>
           <Text text={value.rich_text} />
@@ -166,6 +176,12 @@ const renderBlock = (block) => {
           {href}
         </a>
       );
+    case "mention":
+      return (
+        <a href={value.url} target="_brank" className={styles.bookmark}>
+          {value.plain_text}
+        </a>
+      );
     case "table": {
       return (
         <table className={styles.table}>
@@ -241,7 +257,7 @@ export default function Post({ page, blocks, tagList }) {
   );
 
   // 
-  console.log(blocks)
+  //console.log(blocks)
   
 
   const adIndex = Math.ceil(blocks.length/2)

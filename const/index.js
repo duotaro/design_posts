@@ -1,5 +1,5 @@
 export const DOMAIN = 'https://eurekayamauchi.github.io'
-export const BASE_URL = 'https://eurekayamauchi.github.io/ai_posts'
+export const BASE_URL = 'https://eurekayamauchi.github.io/design_posts'
 export const GENRE_LIST = [
     {
         name: 'Home',
